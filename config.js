@@ -1,0 +1,31 @@
+window.APP_CONFIG = {
+  dataLabels: {
+    all: "All",
+  },
+  basePalette: {
+    Biogas: "#bcbd22",
+    "Energy from waste": "#8c564b",
+    Hydro: "#17becf",
+    Other: "#7f7f7f",
+    "Solar photovoltaics": "#ff7f0e",
+    "Solid biomass": "#2ca02c",
+    Wind: "#1f77b4",
+  },
+  subcategoryShadeRange: [0.92, 0.52],
+  pointRadius: 4.4,
+  pointOpacity: 0.9,
+  regionLabelNames: [
+    "East Midlands",
+    "Eastern",
+    "London",
+    "North East",
+    "North West",
+    "Northern Ireland",
+    "Scotland",
+    "South East",
+    "South West",
+    "Wales",
+    "West Midlands",
+    "Yorkshire and Humber",
+  ],
+};

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Renewable Power Plants by Location and Source</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script>
+      if (!window.d3) {
+        document.write('<script src="./vendor/d3.v7.min.js"><\/script>');
+      }
+    </script>
+    <script src="./vendor/topojson-client.min.js"></script>
+    <script src="./vendor/proj4.min.js"></script>
+    <script src="./data/uk-regions.js"></script>
+    <script src="./data/powerplants.js"></script>
+    <script src="./config.js"></script>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <div class="controls card">
+          <h2>Power Plant Filters</h2>
+          <div class="control-grid">
+            <label>
+              <span>Renewable Source</span>
+              <select id="source-filter"></select>
+            </label>
+            <label>
+              <span>Subcategory</span>
+              <select id="subcategory-filter"></select>
+            </label>
+            <label>
+              <span>Technology Type</span>
+              <select id="technology-filter"></select>
+            </label>
+            <label>
+              <span>Status</span>
+              <select id="status-filter"></select>
+            </label>
+          </div>
+
+          <div class="geography-panel">
+            <div class="geography-head">
+              <h3>Area Selection</h3>
+              <p id="selection-state">No area selected. Choose areas or use renewable filters to show plants.</p>
+            </div>
+
+            <div class="geography-group">
+              <span>Country</span>
+              <div id="country-buttons" class="pill-grid"></div>
+            </div>
+
+            <div class="geography-group">
+              <span>Region</span>
+              <div id="region-buttons" class="pill-grid"></div>
+            </div>
+
+            <div class="geography-group">
+              <span>Selected Areas</span>
+              <div id="selection-chips" class="chip-list"></div>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button id="show-all-button" type="button">Show All Areas</button>
+            <button id="show-land-button" type="button">All Land</button>
+            <button id="show-offshore-button" type="button">All Offshore</button>
+            <button id="reset-button" type="button">Clear Selections</button>
+          </div>
+        </div>
+
+        <div class="summary card">
+          <h2>Current View</h2>
+          <dl>
+            <div>
+              <dt>Visible plants</dt>
+              <dd id="visible-count">0</dd>
+            </div>
+            <div>
+              <dt>Renewable sources</dt>
+              <dd id="source-count">0</dd>
+            </div>
+            <div>
+              <dt>Regions in view</dt>
+              <dd id="region-count">0</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div class="legend card">
+          <div class="legend-head">
+            <h2>Renewable Source</h2>
+          </div>
+          <div id="legend-content"></div>
+        </div>
+      </aside>
+
+      <main class="canvas-wrap">
+        <div class="map-header">
+          <h2>National Distribution of Renewable Energy Power Plants</h2>
+        </div>
+        <div class="map-card">
+          <svg id="map" aria-label="Map of renewable power plants in the UK"></svg>
+          <div id="empty-state" class="empty-state" role="status" aria-live="polite">
+            <strong>No plants shown yet</strong>
+            <span>Choose an area, apply a renewable filter, or use Show All Areas.</span>
+          </div>
+          <div id="tooltip" class="tooltip" role="status" aria-live="polite"></div>
+        </div>
+      </main>
+    </div>
+
+    <script src="./main.js"></script>
+  </body>
+</html>
